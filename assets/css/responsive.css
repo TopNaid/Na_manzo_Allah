@@ -118,7 +118,6 @@
         gap: var(--space-8);
         text-align: center;
     }
-
     .story-stats {
         display: flex;
         flex-direction: row;
@@ -248,12 +247,6 @@
         gap: var(--space-3);
     }
 
-    /* Contact Form */
-    /* .contact-content {
-        grid-template-columns: 1fr;
-        gap: var(--space-8);
-    } */
-
     .contact-form-container {
         padding: var(--space-8);
     }
@@ -362,7 +355,10 @@
     .hero-title {
         font-size: var(--text-4xl);
     }
-
+    .navbar-nav .nav-link:hover::after,
+    .navbar-nav .nav-link.active::after {
+    width: 50%;
+    }
     .hero-illustration {
         width: 300px;
         height: 300px;
@@ -413,7 +409,6 @@
         gap: var(--space-8);
         text-align: center;
     }
-
     .hero-text {
         padding-right: 0;
     }
@@ -573,7 +568,10 @@
         margin: var(--space-1) 0;
         text-align: center;
     }
-
+    .navbar-nav .nav-link:hover::after,
+    .navbar-nav .nav-link.active::after {
+        width: 30%;
+   }
     .navbar-nav .nav-link {
         padding: var(--space-3) var(--space-4);
         display: block;
