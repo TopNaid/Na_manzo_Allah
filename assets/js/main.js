@@ -108,10 +108,6 @@ function initFormValidation() {
             });
 
             if (response.ok) {
-                // Hide form
-                form.style.opacity = "0";
-                form.style.pointerEvents = "none";
-
                 // Show success message
                 showFormMessage(
                     form,
