@@ -90,21 +90,6 @@ function initFormValidation() {
     const forms = document.querySelectorAll('form');
 
     forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            if (validateForm(this)) {
-                // Show success message
-                showFormMessage(this, 'Thank you! Your message has been sent successfully.', 'success');
-
-                // Reset form
-                this.reset();
-
-                // Here you would typically send the form data to a server
-                console.log('Form submitted successfully');
-            }
-        });
-
         // Real-time validation
         const inputs = form.querySelectorAll('input, textarea, select');
         inputs.forEach(input => {
