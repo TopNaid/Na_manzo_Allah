@@ -87,22 +87,64 @@ function initSmoothScrolling() {
 
 // ===== FORM VALIDATION =====
 function initFormValidation() {
-    const forms = document.querySelectorAll('form');
+    const form = document.getElementById("contact-form");
+    if (!form) return;
 
-    forms.forEach(form => {
-        // Real-time validation
-        const inputs = form.querySelectorAll('input, textarea, select');
-        inputs.forEach(input => {
-            input.addEventListener('blur', function() {
-                validateField(this);
+    // Submit handler (Formspree AJAX)
+    form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        if (!validateForm(form)) return;
+
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch(form.action, {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "Accept": "application/json"
+                }
             });
 
-            input.addEventListener('input', function() {
-                clearFieldError(this);
-            });
+            if (response.ok) {
+                // Hide form
+                form.style.opacity = "0";
+                form.style.pointerEvents = "none";
+
+                // Show success message
+                showFormMessage(
+                    form,
+                    "Thank you! Your message has been sent successfully.",
+                    "success"
+                );
+
+                form.reset();
+            } else {
+                throw new Error("Submission failed");
+            }
+        } catch (error) {
+            showFormMessage(
+                form,
+                "Oops! Something went wrong. Please try again later.",
+                "error"
+            );
+        }
+    });
+
+    // Real-time validation
+    const inputs = form.querySelectorAll("input, textarea, select");
+    inputs.forEach(input => {
+        input.addEventListener("blur", function () {
+            validateField(this);
+        });
+
+        input.addEventListener("input", function () {
+            clearFieldError(this);
         });
     });
 }
+
 
 function validateForm(form) {
     let isValid = true;
